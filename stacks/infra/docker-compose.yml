@@ -1,0 +1,53 @@
+services:
+  minio:
+    image: kasra.r1.kubit.dev/today-general/minio:RELEASE.2025-05-24T17-08-30Z
+    container_name: today_minio
+    hostname: minio
+    restart: ${restart_policy}
+    command: server --console-address ":9001" /data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 5    
+    ports:
+      - "9001:9001"
+      - "9000:9000"
+    volumes:
+      - minio_data:/data
+    environment:
+      - MINIO_ROOT_USER
+      - MINIO_ROOT_PASSWORD
+    networks:
+      - today_net
+
+
+  rabbitmq:
+    image: kasra.r1.kubit.dev/today-general/rabbitmq:4.0.5
+    container_name: rabbit
+    restart: always
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      interval: 30s
+      timeout: 10s
+      retries: 5    
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - today_net
+
+networks:
+  today_net:
+    name: today_net
+    external: true
+
+volumes:
+  minio_data:
+    name: minio_data
+    external: true
+  rabbitmq_data:
+    name: rabbitmq_data
+    external: true
