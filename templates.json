@@ -13,7 +13,19 @@
             "repository": {
                 "url": "https://github.com/Mahdi-Forghani/portainer-templates",
                 "stackfile": "stacks/infra/docker-compose.yml"
-            }
+            },
+            "env": [
+                {
+                    "name": "RABBITMQ_USER",
+                    "label": "نام کاربری RabbitMQ",
+                    "default": "guest"
+                },
+                {
+                    "name": "RABBITMQ_PASSWORD",
+                    "label": "رمز عبور RabbitMQ",
+                    "default": "guest"
+                }
+            ]
         }
     ]
 }
