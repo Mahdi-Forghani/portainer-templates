@@ -3,23 +3,18 @@
     "templates": [
         {
             "id": 1,
-            "type": 1,
-            "title": "Registry",
-            "description": "Docker image registry",
+            "type": 2,
+            "title": "Today Infrastructure",
+            "description": "Infrastructure tools for deploying Today",
             "categories": [
-                "docker"
+                "Infrastructure"
             ],
             "platform": "linux",
-            "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/registry.png",
-            "image": "registry:latest",
-            "ports": [
-                "5000/tcp"
-            ],
-            "volumes": [
-                {
-                    "container": "/var/lib/registry"
-                }
-            ]
+            "logo": "https://todayhcm.com/wp-content/uploads/2024/02/Today-Logo.svg",
+            "repository": {
+                "url": "https://github.com/Mahdi-Forghani/portainer-templates",
+                "stackfile": "stacks/infra/docker-compose.yml"
+            }
         }
     ]
 }
