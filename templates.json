@@ -4,18 +4,28 @@
         {
             "id": 1,
             "type": 2,
-            "title": "زیرساخت تودی",
-            "name": "infra",
-            "description": "ابزارهای زیرساختی برای استقرار تودی",
+            "title": "Today Infrastructure",
+            "description": "Infrastructure tools for deploying Today",
             "categories": [
-                "زیرساخت"
+                "Infrastructure"
             ],
             "platform": "linux",
-            "logo": "https://todayhcm.com/wp-content/uploads/2024/02/Today-Logo.svg",
+            "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/portainer.png",
             "repository": {
                 "url": "https://github.com/Mahdi-Forghani/portainer-templates",
                 "stackfile": "stacks/infra/docker-compose.yml"
-            }
+            },
+            "env": [
+                {
+                    "name": "GRAFANA_USER",
+                    "label": "Grafana admin user",
+                    "default": "admin"
+                },
+                {
+                    "name": "GRAFANA_PASSWORD",
+                    "label": "Grafana admin password"
+                }
+            ]
         }
     ]
 }
